@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -10,7 +10,7 @@ import React from 'react'
 import { useState } from 'react'
 import { PatientFormValidation, UserFormValidation } from "@/lib/validation"
 import { useRouter } from "next/navigation"
-import { createUser, registerPatient } from "@/lib/actions/patient.actions"
+import { registerPatient } from "@/lib/actions/patient.actions"
 import { FormFieldType } from "./PatientForm"
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group"
 import { Doctors, GenderOptions, IdentificationTypes, PatientFormDefaultValues } from "@/constants"
@@ -37,7 +37,7 @@ const RegisterForm = ({ user }: { user: User }) => {
     async function onSubmit(values: z.infer<typeof PatientFormValidation>) {
         setIsLoading(true);
 
-        let formData;
+        let formData = new FormData();
 
         if (values.identificationDocument && values.identificationDocument.length > 0) {
             const blobFile = new Blob([values.identificationDocument[0]], {
@@ -66,14 +66,16 @@ const RegisterForm = ({ user }: { user: User }) => {
             }
 
         } catch (error) {
-            console.error(error)
+            console.log(error)
         }
+
+        setIsLoading(false);
     }
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-12 flex-1">
                 <section className="space-y-4">
-                    <h1 className="header">Welcome!</h1>
+                    <h1 className="header">{`Welcome ${(user.name.split(' ')[0])}!`}</h1>
                     <p className="text-dark-700">Let us know more about yourself.</p>
                 </section>
                 <section className="space-y-6">

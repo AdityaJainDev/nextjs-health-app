@@ -33,7 +33,7 @@ const AppointmentForm = ({
     patientId: string,
     appointment?: Appointment,
     setOpen: (open: boolean) => void,
-    type: "create" | "cancel" | "schedule"
+    type: "create" | "cancelled" | "schedule"
 }) => {
     const router = useRouter()
     const [isLoading, setIsLoading] = useState(false)
@@ -53,8 +53,6 @@ const AppointmentForm = ({
         },
     })
 
-    console.log({ userId, patientId, type, appointment })
-
     async function onSubmit(values: z.infer<typeof AppointmentFormValidation>) {
         setIsLoading(true);
 
@@ -64,7 +62,7 @@ const AppointmentForm = ({
             case 'schedule':
                 status = "scheduled";
                 break;
-            case 'cancel':
+            case 'cancelled':
                 status = "cancelled";
                 break;
             default:
@@ -120,7 +118,7 @@ const AppointmentForm = ({
 
     let buttonLabel;
     switch (type) {
-        case 'cancel':
+        case 'cancelled':
             buttonLabel = "Cancel Appointment";
             break;
         case 'create':
@@ -141,7 +139,7 @@ const AppointmentForm = ({
                     <p className="text-dark-700">Request a new appointment in 10 seconds!</p>
                 </section>}
 
-                {type !== "cancel" && (
+                {type !== "cancelled" && (
                     <>
                         <CustomFormField
                             fieldType={FormFieldType.SELECT}
@@ -194,7 +192,7 @@ const AppointmentForm = ({
                     </>
                 )}
 
-                {type === "cancel" && (
+                {type === "cancelled" && (
                     <CustomFormField
                         fieldType={FormFieldType.TEXTAREA}
                         control={form.control}
@@ -204,7 +202,7 @@ const AppointmentForm = ({
                     />
                 )}
 
-                <SubmitButton isLoading={isLoading} className={`${type === 'cancel' ? 'shad-danger-btn' : 'shad-primary-btn'} w-full`}>
+                <SubmitButton isLoading={isLoading} className={`${type === 'cancelled' ? 'shad-danger-btn' : 'shad-primary-btn'} w-full`}>
                     {buttonLabel}
                 </SubmitButton>
             </form>

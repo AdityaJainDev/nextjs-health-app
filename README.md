@@ -1,4 +1,4 @@
-## Getting Started
+## Getting Started Locally
 Clone the project and inside the folder, run the development server:
 ```bash
 
@@ -44,5 +44,5 @@ and uses:
 - Hospital admin staff can confirm and schedule or cancel the pending appointments, by various patients, in the dashboard.
 - Users are notified regarding the final confirmation via SMS so that they are updated as soon as possible.
 
-### [Demo](https://nextjs-health-app.vercel.app/)
+### [Demo](https://nextjs-health-app-h5ax.vercel.app/)
 - Admin dashboard can be accessed from the homepage (below the form) with the passKey - `123456`

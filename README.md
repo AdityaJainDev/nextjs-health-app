@@ -43,3 +43,6 @@ and uses:
 - As special Admin dashboard for the hospital staff is accessible using a simple encrypted Passkey, making it secure.
 - Hospital admin staff can confirm and schedule or cancel the pending appointments, by various patients, in the dashboard.
 - Users are notified regarding the final confirmation via SMS so that they are updated as soon as possible.
+
+### [Demo](https://nextjs-health-app.vercel.app/)
+- Admin dashboard can be accessed from the homepage (below the form) with the passKey - `123456`
